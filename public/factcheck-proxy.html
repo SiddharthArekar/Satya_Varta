@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fact Check Proxy</title>
+</head>
+<body>
+    <script>
+        // Simple CORS proxy for Google Fact Check API
+        const API_KEY = 'AIzaSyCsIVw3w6vuVcMSMgI2ukjSVZbeqmEubYk';
+        const API_URL = 'https://factchecktools.googleapis.com/v1alpha1/claims:search';
+        
+        // Listen for messages from the main app
+        window.addEventListener('message', async (event) => {
+            if (event.data.type === 'FACT_CHECK_REQUEST') {
+                try {
+                    const response = await fetch(`${API_URL}?query=${encodeURIComponent(event.data.query)}&key=${API_KEY}`);
+                    const data = await response.json();
+                    
+                    // Send result back to parent window
+                    window.parent.postMessage({
+                        type: 'FACT_CHECK_RESPONSE',
+                        query: event.data.query,
+                        data: data
+                    }, '*');
+                } catch (error) {
+                    window.parent.postMessage({
+                        type: 'FACT_CHECK_ERROR',
+                        query: event.data.query,
+                        error: error.message
+                    }, '*');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

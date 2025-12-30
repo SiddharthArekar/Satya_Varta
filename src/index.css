@@ -1,0 +1,474 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 2025 Luxury News App Design System */
+
+/* Custom Animations for Hero Section */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes counter {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
+  }
+}
+
+/* Animation Classes */
+.animate-fade-in {
+  animation: fadeIn 0.8s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 1s ease-out;
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-counter {
+  animation: counter 0.5s ease-in-out;
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+@layer base {
+  :root {
+    /* Core Brand Colors - Deep Navy & Premium Accents */
+    --background: 240 10% 98%;
+    --foreground: 240 10% 8%;
+
+    /* Card System with Glassmorphism */
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 8%;
+    --card-glass: 240 10% 98% / 0.8;
+    --card-border: 240 8% 92%;
+
+    /* Luxury News Brand Colors */
+    --primary: 240 90% 58%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 240 90% 68%;
+    --primary-muted: 240 30% 85%;
+
+    /* Premium Accent System */
+    --secondary: 240 6% 95%;
+    --secondary-foreground: 240 10% 15%;
+    --accent: 280 100% 92%;
+    --accent-foreground: 280 60% 20%;
+
+    /* News Category Colors */
+    --world: 200 90% 55%;
+    --business: 140 70% 45%;
+    --technology: 260 85% 60%;
+    --sports: 25 95% 55%;
+    --entertainment: 320 85% 60%;
+    --health: 160 75% 50%;
+    --science: 300 80% 55%;
+    --bookmarks: 340 95% 60%;
+
+    /* Neutral Palette */
+    --muted: 240 6% 94%;
+    --muted-foreground: 240 4% 45%;
+    --border: 240 6% 90%;
+    --input: 240 6% 96%;
+    --ring: 240 90% 58%;
+
+    /* Status Colors */
+    --destructive: 0 75% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 140 70% 50%;
+    --warning: 45 95% 60%;
+
+    /* Luxury Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-glass: linear-gradient(135deg, hsl(var(--card-glass)), hsl(0 0% 100% / 0.3));
+    --gradient-news: linear-gradient(135deg, hsl(240 90% 58%), hsl(280 85% 60%));
+    --gradient-category: linear-gradient(135deg, hsl(var(--muted)), hsl(0 0% 100%));
+
+    /* Premium Shadows */
+    --shadow-luxury: 0 20px 40px -12px hsl(var(--primary) / 0.25);
+    --shadow-glass: 0 8px 32px hsl(240 10% 8% / 0.12);
+    --shadow-card: 0 4px 20px hsl(240 10% 8% / 0.08);
+    --shadow-float: 0 12px 30px -8px hsl(var(--primary) / 0.3);
+
+    /* Typography Scale */
+    --font-primary: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-display: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+
+    /* Popover System */
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 8%;
+
+    /* Animations */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    --radius: 1rem;
+  }
+
+  .dark {
+    /* Dark Mode Luxury Palette */
+    --background: 240 12% 6%;
+    --foreground: 240 6% 95%;
+
+    /* Dark Glass Cards */
+    --card: 240 10% 10%;
+    --card-foreground: 240 6% 95%;
+    --card-glass: 240 10% 8% / 0.8;
+    --card-border: 240 8% 18%;
+
+    /* Dark Brand Colors */
+    --primary: 240 90% 68%;
+    --primary-foreground: 240 12% 6%;
+    --primary-glow: 240 90% 78%;
+    --primary-muted: 240 30% 25%;
+
+    /* Dark Accents */
+    --secondary: 240 6% 15%;
+    --secondary-foreground: 240 6% 85%;
+    --accent: 280 100% 18%;
+    --accent-foreground: 280 60% 80%;
+
+    /* Dark Neutrals */
+    --muted: 240 6% 14%;
+    --muted-foreground: 240 4% 55%;
+    --border: 240 6% 20%;
+    --input: 240 6% 16%;
+    --ring: 240 90% 68%;
+
+    /* Dark Status */
+    --destructive: 0 75% 65%;
+    --destructive-foreground: 240 12% 6%;
+    --success: 140 70% 55%;
+    --warning: 45 95% 65%;
+
+    /* Dark Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-glass: linear-gradient(135deg, hsl(var(--card-glass)), hsl(0 0% 0% / 0.3));
+    --gradient-news: linear-gradient(135deg, hsl(240 90% 68%), hsl(280 85% 70%));
+
+    /* Dark Popover */
+    --popover: 240 10% 12%;
+    --popover-foreground: 240 6% 95%;
+
+    /* Dark Shadows */
+    --shadow-luxury: 0 20px 40px -12px hsl(0 0% 0% / 0.4);
+    --shadow-glass: 0 8px 32px hsl(0 0% 0% / 0.3);
+    --shadow-card: 0 4px 20px hsl(0 0% 0% / 0.2);
+    --shadow-float: 0 12px 30px -8px hsl(var(--primary) / 0.4);
+  }
+}
+
+/* Luxury Components */
+@layer components {
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-xl border border-card-border shadow-[var(--shadow-glass)] rounded-2xl;
+  }
+
+  .luxury-gradient {
+    background: var(--gradient-primary);
+  }
+
+  .news-gradient {
+    background: var(--gradient-news);
+  }
+
+  .category-world { @apply text-[hsl(var(--world))] bg-[hsl(var(--world))]/10; }
+  .category-business { @apply text-[hsl(var(--business))] bg-[hsl(var(--business))]/10; }
+  .category-technology { @apply text-[hsl(var(--technology))] bg-[hsl(var(--technology))]/10; }
+  .category-sports { @apply text-[hsl(var(--sports))] bg-[hsl(var(--sports))]/10; }
+  .category-entertainment { @apply text-[hsl(var(--entertainment))] bg-[hsl(var(--entertainment))]/10; }
+  .category-health { @apply text-[hsl(var(--health))] bg-[hsl(var(--health))]/10; }
+  .category-science { @apply text-[hsl(var(--science))] bg-[hsl(var(--science))]/10; }
+  .category-bookmarks { @apply text-[hsl(var(--bookmarks))] bg-[hsl(var(--bookmarks))]/10; }
+
+  .hover-float {
+    @apply transition-all duration-300 hover:shadow-[var(--shadow-float)] hover:-translate-y-1;
+  }
+
+  .smooth-transition {
+    transition: var(--transition-smooth);
+  }
+
+  .spring-transition {
+    transition: var(--transition-spring);
+  }
+
+  /* Modern Custom Scrollbar Styles */
+  .modern-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--primary) / 0.3) transparent;
+  }
+
+  .modern-scrollbar::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  .modern-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+  }
+
+  .modern-scrollbar::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.3), hsl(var(--primary) / 0.5));
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+    transition: all 0.3s ease;
+  }
+
+  .modern-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.5), hsl(var(--primary) / 0.7));
+    transform: scale(1.1);
+  }
+
+  .modern-scrollbar::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.7), hsl(var(--primary) / 0.9));
+  }
+
+  .modern-scrollbar::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  /* Glass-morphism Scrollbar */
+  .glass-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  }
+
+  .glass-scrollbar::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  .glass-scrollbar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+  }
+
+  .glass-scrollbar::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.2), 
+      rgba(255, 255, 255, 0.4)
+    );
+    border-radius: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+  }
+
+  .glass-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.4), 
+      rgba(255, 255, 255, 0.6)
+    );
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+  }
+
+  /* Minimal Scrollbar */
+  .minimal-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted-foreground) / 0.3) transparent;
+  }
+
+  .minimal-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .minimal-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .minimal-scrollbar::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.3);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+  }
+
+  .minimal-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.5);
+  }
+
+  /* Gradient Scrollbar */
+  .gradient-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--primary)) transparent;
+  }
+
+  .gradient-scrollbar::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  .gradient-scrollbar::-webkit-scrollbar-track {
+    background: linear-gradient(180deg, 
+      hsl(var(--primary) / 0.1), 
+      hsl(var(--primary) / 0.05)
+    );
+    border-radius: 12px;
+  }
+
+  .gradient-scrollbar::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, 
+      hsl(var(--primary)), 
+      hsl(var(--primary) / 0.8)
+    );
+    border-radius: 12px;
+    border: 2px solid hsl(var(--background));
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px hsl(var(--primary) / 0.3);
+  }
+
+  .gradient-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, 
+      hsl(var(--primary) / 0.9), 
+      hsl(var(--primary) / 0.7)
+    );
+    transform: scale(1.1);
+    box-shadow: 0 4px 16px hsl(var(--primary) / 0.4);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  /* Apply modern scrollbar globally */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--primary) / 0.3) transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.3), hsl(var(--primary) / 0.5));
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+    transition: all 0.3s ease;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.5), hsl(var(--primary) / 0.7));
+    transform: scale(1.1);
+  }
+
+  *::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.7), hsl(var(--primary) / 0.9));
+  }
+
+  *::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-primary);
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-primary {
+    font-family: var(--font-primary);
+  }
+}
+
+/* Force solid background on dropdown menus */
+[data-radix-dropdown-menu-content] {
+  background-color: hsl(var(--popover)) !important;
+  background: hsl(var(--popover)) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  opacity: 1 !important;
+}
