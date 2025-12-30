@@ -588,9 +588,6 @@ const Index = () => {
         </div>
       </main>
 
-      <h1>HELLO</h1>
-      <h1>HELLO</h1>
-
       <ArticleModal
         article={selectedArticle}
         isOpen={isModalOpen}
